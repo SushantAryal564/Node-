@@ -1,6 +1,6 @@
 const fs = require('fs');
 // Synchronous Blocking way 
-const textIn = fs.readFileSync("index.txt",'utf-8');
+const textIn = fs.readFileSync("note.txt",'utf-8');
 const textOut = `This is what we know about the node.js: ${textIn}. \nCreated on ${Date.now()}`
 fs.writeFileSync('output.txt',textOut)
 console.log("File written!");

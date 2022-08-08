@@ -1,0 +1,53 @@
+1. Reading and Writing Files
+  const fs = require('fs')
+  readFileSync("Filename",'utf-8')
+  fs.writeFileSync("Filename",text)
+
+2. Blocking and Non Blocking Asynchronous Nature of Node
+  Synchronous: 
+  It means each statement is processed one after another line by line. It is also called blocking code as certain action can be done after the previous action has been finished.
+  Asynchronous: 
+  we offload the heavy work to be done in background. Then when the work is done a callback function that we register is called to handle the result. Rest of the code is executing
+  The Asynchronous Nature of Node.js: 
+  Node.js is single threaded so in each application there is only one thread. if all the user are accessing the same thread there will be a problem. so when Asynchronous code is used which instead of blocking it does the task in background and callback function is called when the task is completed. Node.js is build around callback function. Callbacks doesn't make asynchronous it work in some of the module in node.js only. 
+  callback hell
+
+3. Creating a simple Web server
+  Node js is built around callback in order to implement an asynchronous behaviours. we need 'http' module to build http server. To create a server we need to create a server and start a server. http.createserver takes the callback function which is called every time when request is received. 
+
+4. Routing
+  Routing means implementing different actions for different urls. 
+  When we are using the browser the browser is automatically perform a request for website favicon. we ignore it.
+  Header=> http header is the piece of information about the response. header and status quote shoudl be always above the response. 
+
+5. Building a very simple API
+  . represent the directory from where we run in terminal. All node.js project get access to the variable __dirname which always translate to teh directory in which the script that is executing is located. 
+
+6. HTML Templating Building the templates
+  Each different file will trigger a different request so we have to handle each assest request from the end user. 
+
+13. Parsing Variables from urls
+  With url.parse we get the object with different key and value amoung them pathname and query is the one which we need. 
+
+14. Using Modules 2 our own Module
+  We can create our own module and export something from them and import the function in another module and use the function. 
+  In node.js every single file is treated as module.
+  In each module we have access to module and on it we can set export property.
+  While importing import the cutom module only after core module.
+16. Types of Packages and install
+  There are two type of packages:
+  Simple dependencies
+    Simple dependencies are the packages that contain code that will include in out own code, code upon which we built our own application. 
+  developement dependencies
+    These are the tools for development, for example code bundler like webpack, debugger tool. 
+    nodemon helps develope node js application automatically restarting node appliation whenever we change some files. nodemon it doesn't work with git bash.
+    
+  There are two type of install:
+  local install
+
+  global install
+    a package should be installed globally when it provides an executable command that we can run from command line interface. 
+
+
+
+
