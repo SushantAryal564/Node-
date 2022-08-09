@@ -41,12 +41,114 @@
   developement dependencies
     These are the tools for development, for example code bundler like webpack, debugger tool. 
     nodemon helps develope node js application automatically restarting node appliation whenever we change some files. nodemon it doesn't work with git bash.
-    
+
   There are two type of install:
   local install
 
   global install
-    a package should be installed globally when it provides an executable command that we can run from command line interface. 
+    a package should be installed globally when it provides an executable command that we can run from command line interface. They are generally developement dependencies.
+
+18. Package Versioning and updating
+  Most packages follow semantic version notation. 
+  Version number is always expressed with three number. First number is major version , second minor version and third version is called patch version. Patch version is intened to fix bugs.
+  minor version means new feature has been included in the packages but it doesn't include breaking change.
+  major version is huge new version.
+  ^ means we expect patch and minor releases.
+  ~ means update the patch
+  * means update to latest update
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+Introduction to Back end Web development
+1. An overview of How the Web Workds
+  request response model or client server architecture
+  domain name isn't a real address of the server we are trying to access so we need to convert the domain name to the real address of the server which happen through DNS. DNS stand for domain name server which are the special server basically phonebook of internet. 
+  When we open up a website the browser at first make a request to a DNS and this server matched web address to the server real IP address. This happen through ISP. which is sent back to the browser a real address.(https//216.58.211.206:443)(protocal/ IP address / portNumber). port number is to identify the specific service running in a server like subaddress. 
+
+  When we have the real address a TCP/IP socket connection is established between browser and server. This connection is kept alive till the file of the website is transfered. We make the http request a communication protacal (a system of rules that allow two or more service to communicate). A request message look like:
+
+  GET/ maps HTTP/1.1 (http Method/ request target/ HTTP version)
+  HTTP request header(many different possibilities)
+  Request Body (only when sending data to server. eg: post)
+
+  Different methods are:
+  GET,
+  POST, 
+  PUT and patch
+
+  A HTTP response message look like:
+
+  HTTP/1.1 200 OK (start line: HTTP version+status code+status message)
+  HTTP response header (many different possibilites): It is backend developer who specifies it and sends them on response.
+  response body (most response): it is a backend developer who specifies and send them back in response.It generally contain html or json data. 
+
+  If we are trying to access the website there will be many many request and responses. At first only the html file is received after which the file is scanned to get all the assest that it need to build the entire website. For each of the file browser will make a new HTTP request to the server this back and froth happen for every files. When all the files are recevied then the website is rendered in the website.  
+
+2.HTTP in action
+  200 means ok response. 
+
+4.Front End vs Back end web development
+  Front end is about everthing about what happen in browser. Technology are html, css and javascript, React, Angular etc. Frontend stack 
+
+  Backend is about eveything that happen in the web server. Server is the computer that is connect to the internet that stores the basic files like HTML, CSS and images and second runs the http server. Static and dynamic server. we can code for IFT devices with the help of node. 
+
+5. Static vs Dynamic vs API
+
+  static website is when the developer uploads the final ready to serve file to webserver. this file are sent to the browser upon request. There is no work done in the server, there is no application running.
+
+  Dynamic website are  built on the server each times reqeust comes in. It contains database and application running which fetch data from database and built page on template the user request based on the data coming from the database. This whole process is called server side rendering. dynamic website or web applicatioin are kind of same.
+  It is also called Server side render 
+
+  API
+  Application programming interface a piece of software that can be used by another piece of software that allow one software to talk to another. 
+  with the api we only send the data to the browser usually in json format not the entire website ready to be displayed.
+  Two part:
+  Building API
+  Consuming API on client side where website is assemble by plugging the data that we receive into some sort of template like framework like React, Angular etc.  so with API approach the building phase of website is moved from the backend to the frontend. It is also called client side render. Node is perfect tool for building the API. 
+  API can be consumed by other client rather than only browser. we can use it for native mobile app, native app, native window app. 
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+How Node.js works A look Behind the Scence
+2. Node, V8, Libuv and C++
+  Node is a program that is written with C++ and javascript.
+  Node.js architecture in term of node dependencies node runtime has several dependencies which are:
+    1. V8
+      v8 engine convert the javascript code to machine code that computer can understand.
+    2. Libuv
+      it is open source library with strong focus on asynchronous I/O. It give node.js access to underlying computer operating system, file system, networking and more. It implements two important feature of node.js:
+        1. Event loop
+          It is responsible for handling easy task like executing call backs and network IO.
+        2. Thread Pool
+          It is for heavy task. It is written in C++. 
+  This architecture allow us to write 100% pure javascript code running in node.js and still access to function like file reading which is actually implemented in libuv.
+  Other dependencies it depends on are http-parser, c-ares, openSSL and zlib. 
+  
+3. Process, Threads and the Thread Pool
+  When we run node in the computer it means there is a node process running in the computer. Node.js runs in the single thread no matter if we have the single user or ten million user, so we need to be careful of not blocking the thread. when the program is initialized top level code is executed after which event loop is executed. some task are heavy expensive to be executed in event loop because they will block single thread. In this case thread pool comes into action it give 4 or more thread. so event loop automatically offload the heavy task to the thread pool automatically behind the scence. The task that are offloaded are generally File system, cryptography, compresion and DNS lookups etc. 
+
+4. The Node.js Event loop
+  Event loop is where application code that is inside callback function is executed. Node.js is build around callback functions. It work this way because node uses event driven architecture. all the action like http request release the event as soon as they are done with their work, event loop will pick up this event and call the callback functions that are associated with each event. event loop receive event each time something important happen and will then call the necessary callback. 
+  Event loop does the orchestration which means that it receive events, call their callback function and offload the more expensive task to the thread pools. 
+  as soon as we run the node application event loop start running right way, it has multiple phases and each phase has a callback queue, which are the callback comming from event that the event loop receive. Four important phases of event loop are:
+    1. first phase take care of callback of expired timers if there are callback function from setTimeout() that just expired these are the first ones to be processed by event loop. 
+    2. I/O polling and execution of I/O callback 
+    3. setImmediate callback: A special kind of timer that we can use if we want to process callback immediately after I/0 polling and execution phase.
+    4. close Callback: All close event are processed.
+  
+  Dont' Block event loop:
+    Don't use sync version of function in fs, crypto and zlib modules in your callback function.
+    Don't perform complex calculation in event loop.
+    Be careful with JSON in large object.
+    Dont' use too complex regular expression.
+
+5. The Event Loop in Practise
+  Top level code get executed immediately. 
+  Event loop waits for stuff to happen in the poll phase. 
 
 
 
