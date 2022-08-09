@@ -150,6 +150,7 @@ How Node.js works A look Behind the Scence
   Top level code get executed immediately. 
   Event loop waits for stuff to happen in the poll phase. 
 
-
+6. Event and Event driven architecture
+  Most of the node module are build around event driven architecture. In node there are certain object called event emitter that emit named event. This event can be listened by the eventlistener that we set up which will fire off callback function that are attached to each listener. This is called observer pattern. 
 
 
