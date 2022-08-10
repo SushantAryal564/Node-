@@ -154,3 +154,66 @@ How Node.js works A look Behind the Scence
   Most of the node module are build around event driven architecture. In node there are certain object called event emitter that emit named event. This event can be listened by the eventlistener that we set up which will fire off callback function that are attached to each listener. This is called observer pattern. 
 
 
+7. Event in practice
+  .on in a node project then we are listening,for an event. 
+
+8. Streams
+  Stream are used to process data piece by piece without completing the whole read or write operation, and therefore without keeping all the data in memory.
+  Streams are instance of the EventEmitter class. All stream can emit and listen to named events. 
+  Streams are prefect for handling large volume of data for example videos. 
+  More efficient data processing in term of memory (no need to keep all data in memory) and time (we don't have to wait until all the data is available).
+  Four type of stream in nodes are:
+    1. Readable Streams
+      Stream from which we can read (consume) data. 
+      Example: http request, fs read Streams.
+      Important Event: data(emited when new piece of data is to consume), end
+      Function on Stream: pipe() and read()
+    
+    2. Writable Streams
+      Stream to which we can write data
+      example: http response, fs write Streams
+      important event: drain finish
+      function: write() and end()
+
+    3. Duplex Streams
+      Streams that are both readable and writeable. 
+      example: net web socket
+    
+    4. Transform streams:
+      Duplex streams that transform data as it is written or read.
+      Example: zlib Gzip creation
+
+9. Stream in Practise
+  Normal way of reading the file using the readFile require node to load the entire file into memory and then only it can send the data.
+
+  Stream:
+  Instead of reading the file into a variable, and having to store that variable into memory, we could make a readable stream and as we receive each chunk of data, we send it to client as response which is the writable stream. Each time there is a new piece of data that we can consume, a readable stream emits the data event. we can listen to that. 
+  response is the writable string so we can use write method to send every single piece of data into that stream. 
+  our readable stream so the one we're using to read the file from the disk is much faster than sending the result witht] the response writable stream over the network. This will overwhel the response stream which cannot handle all this incoming data so fast. This problem is called backpressure.
+  Backpressure happen when the response cannot send the data nearly as fast as it is receiving it from the file. 
+  so, we need to use the pipe operator which is available on all readable stream and it allow us to pipe the output of readable stream  right into the input of the writable stream.
+
+10. How Requiring modules really works
+  In node.js each javascript file is treated as a seperate module. 
+  Node.js used the commonJs moduel system. require(), exports or moudule.exports
+  ES module system in used in browser. import/export
+  What happen when we require() a module
+  resolving and loading ==> wrapping ==> Execution ==>Returning exports ==> caching
+
+11. How Requiring Modules really works
+  require function returns exports of the required module.
+  module.exports is the returned object.
+  use module.exports to export one single variable eg one class or one fuunction
+  use exports to export multiple named variable 
+12. Requring Modules in practice
+  console.log(arguments)
+  arguments is an array in javascript which contain all the values that were passed into a function. 
+
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+/////////////////////////////////////////////
+Asynchronous Javascript Promises and AsyncAwait
+
+1. The problem with Callbacks callback hell
+  
