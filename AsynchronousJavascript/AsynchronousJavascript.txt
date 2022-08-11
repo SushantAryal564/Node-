@@ -1,0 +1,38 @@
+1. Asynchronous JavaScript, AJAX and API
+  Synchronous means code is executed line by line.
+  Each line of code waits for previous line to finish. 
+  Asynchronous code is executed after a task that runs in the background finishes.
+  Asynchronous code is non-blocking.
+  Execution doesn't wait for an asynchronous task to finish its work.
+  Asynchronous programming is all about coordinating the behaviour of our program over certain period of time. 
+  callback function doesn't make the code asynchronous only some function does.
+  We defer an action into the future making the code asynchronous and non blocking.
+  eventlistener doesn't make the code asynchronous just like callback function.
+
+  AJAX: Asynchronous JavaScript and XML: Allows us to communicate with remote web server in an asynchronous way. With AJAX calls, we can request data from web servers dynamically. 
+  API: Application Programming Interface. Piece of software that can be used by another piece of software, in order to allow application to talk to each other. 
+  Example of API:
+    DOM API
+    Geolocation API
+    Own Class API
+    online(WEB) API: Application running on a server, that receive request for data, and send data back as response. We can build own web API using node.js.
+    Every API that we use should have CORS set to unknown or YES.
+
+2. Welcome to Callback Hell
+  When we have one callback function inside another callback function it is called callback hell. 
+  Callback hell is when we have a lot of nested callback in order to execute asynchronous task in sequence.
+  The problem with callback hell is that it make our code look very messy. It make our code hard to maintain or very difficult to understand.
+
+3. Promises and the Fetch API
+  Fetch function immediately returns a promise.
+  Promise: An object that is used as a placeholder for the future result of an asynchronous operation.
+  Promise is a container for an asynchronous delivered value. 
+  A container for a future value. 
+  
+
+
+  
+
+  
+  
+
