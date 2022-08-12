@@ -51,6 +51,13 @@
   In the nutshell the Web API environment the callback queue and event loop all together make it possible that asynchronous code can be executed in a non blocking way even with one thread.
   With promises things work in the slightly different way when the fetch is done callback related to the fetch i.e then method do actually not go into the callback queue. callback of the promises have a special queue for themselves which is called microtasks queue. Microtasks queue has the priority over the callback queue. After the callback have been taken from the callback queue the event loop will check if there are any callbacks in the microtask queue. If there are it will run all of them before it will run any more callbacks from regular callback queue. Microtask can cut in line before every other callback queue.
 
+6. Building a simple promise
+  promise constructor take exactly one argument that is called executor function. As soon as the promise constructor run it will automatically execute the executor function. Executor function takes two argument resolve and reject function. 
+  Promisifying means to convert callback based asynchronous behaviour to promise based. 
+
+7. Consuming Promises with Async_Await
+  Asynchronous function is a function that will basically keep running in the background while the code that inside of it, when function is done it automatically returns a promise.
+  await keyword is basically used to wait for the result of the promise. Stopping execution in an async function isn't a problem because this function is runnning asynchronous in the background. 
 
 
 

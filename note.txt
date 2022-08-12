@@ -213,7 +213,10 @@ How Node.js works A look Behind the Scence
 /////////////////////////////////////////////
 /////////////////////////////////////////////
 /////////////////////////////////////////////
-Asynchronous Javascript Promises and AsyncAwait
+Express Let's Start building the Natours API
 
-1. The problem with Callbacks callback hell
+1. what is Express
+  Express is a minimal node.js framework, a higher level of abstraction. It is build on top of node.js. Express contains a very robust set of feature,complex routing, easier handling of request and response, middleware, server-side rendering.
+  Express allows for rapid development of node.js application.
+  Express makes it easier to orgainze our application into the MVC architecture. 
   
