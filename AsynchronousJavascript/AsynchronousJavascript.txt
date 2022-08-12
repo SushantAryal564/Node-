@@ -28,7 +28,31 @@
   Promise: An object that is used as a placeholder for the future result of an asynchronous operation.
   Promise is a container for an asynchronous delivered value. 
   A container for a future value. 
-  
+  With promises we no longer need to rely on event and callback passed into asynchronous function to handle asynchronous result.
+  Instead of nesting callback, we can chain promises for a sequence of asynchronous operations escaping callback hell.
+  Promises are ES6 feature. 
+  Since promises work with asynchronous operation they are time sensative so they change over time. so they can be in different state. 
+  The promises lifecyle:
+  PENDING
+  SETTLED
+    FULLFILLED
+    REJECTED
+  Promises doesn't get rid of callback but get rid of callback hell.
+
+4. Chaining Promises
+  success or fullfilled value is returned from the return so in the next method we can access it. 
+  Always return the promise and then handle it outside by simply continuing the chain. 
+
+5. Asynchronous Behind the Scence
+  Javascript runtime is a container which include all the different pieces that are necessary to execute javascript code. Heart of javascript runtime is engine. In javascript engine code are executed and the object are stored in memory. 
+  Everything related to the DOM isn't really part of javascript but of the Web API, it's in the webAPI the asynchronous task related to the Dom will run. Asynchronous task runs on the WEB API environment of the browser. If the image is loading in the Synchronous way it will be loading in the callstack. If we want to do something after the task is loaded we need to listen to load event.
+  How does the event look work?
+  It looks into the callstack and determine whether it's empty or not except for global context.In case the stack is empty it will take the first callback from the callback queue and put in the callstack to be executed this is called event loop tick. It has a important task of doing the corelation between the callback in the callback queue and callstack. Event loop decide when each callback is executed. Event loop does the orchestration of the entire javascript runtime. 
+  In the nutshell the Web API environment the callback queue and event loop all together make it possible that asynchronous code can be executed in a non blocking way even with one thread.
+  With promises things work in the slightly different way when the fetch is done callback related to the fetch i.e then method do actually not go into the callback queue. callback of the promises have a special queue for themselves which is called microtasks queue. Microtasks queue has the priority over the callback queue. After the callback have been taken from the callback queue the event loop will check if there are any callbacks in the microtask queue. If there are it will run all of them before it will run any more callbacks from regular callback queue. Microtask can cut in line before every other callback queue.
+
+
+
 
 
   
