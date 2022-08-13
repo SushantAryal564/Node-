@@ -4,4 +4,57 @@
   Here express is the function which on calling will add a bunch of methods to our app variable.
   Routing: Routing means to determine how the application response to a certain client request to a certain URL. 
   Express app and node app are all about request and response this is how the web work.
-  
+
+2. API and RESTful API Design
+  REST architecture is the most used API architecture. 
+  API: a piece of software that can be used by another piece of software, in order to allow application to talk to each other. 
+  API aren't always used to send data, aren't always related to web development and javascript.
+  API have border meaning rather than just web API. 
+  REST(Representational State Transfer) architecture
+  It is basically a way of building web API in a logical way making then easy to consume. 
+  The process of using the API should be as smooth as possible to build RESTful API we need to follow couple of principle:
+  1. Seperate API into logical resources.
+    The key abstraction of information in REST is a resource, all the data that we wanna share in the API should be divided into logical resources. 
+    Resource: Object or representation of something, which has data associated to it. Any informaton that can be named can be resource.
+  2. These resources should then be exposed using structured resource-based urls
+    we need to make availabe the data using some structured URLs that client can send request to.
+    eg: https://www.natours.com/addNewTour
+    addNewTour: ENDPOINT
+    endpoint send different data to the client or also perform different action. 
+    Endpoint should contain only resources, and use HTTP methods for actions and not the action that can be performed on them. 
+  3. To perform different action on data like reading or creating or deleting data, API should use the right HTTP method.
+    put and patch are used to update the existing data.
+    CRUD => CREAD READ UPDATE DELETE
+  4. Send data as JSON
+    JSON is a very lightweight data interchange format which is heavily used by web API's. 
+    For a get request before sending to the client we perform simple response formatting one of the standard for it is JSend.
+    Enveloping: Wrapping a data into a additional object. 
+  5. Must be stateless
+    Stateless RESTful API: All state is handled on the client. This means that each request contain all the information necessary to process a certain request. The server should not have to remeber previous request.
+6. Starting our API Handling GET Requests
+    (req,res) callback funtion is also called route handler. 
+    Before sendiing the data we need to read the data. 
+7. Handling POST Requests
+  On post request we can send data from the client to the server which will be ideally available on the request. Out of the box express doesn't put the body data on the request in order to use the data we have to use middleware. express.json() is the middleware. Middleware is basically a function that can modify the incoming request data. It is called middleware as it stand in the middle of the request and the response.
+8. Responding to URL parameters
+  :/id/:x? (? means vaye pani thik xa navaye pani thik xa)
+
+9. Handling PATCH Requests
+  put: with put we expect our application receive the entire new updated object.
+  patch: we only expect the properties that should be updated on the object.
+
+11. Refactoring Our Routes
+  app.route("/api/v1/routes).get(updateRoute).get(deleteRoute)
+
+12. Middleware and Request Response Cycle
+  The essence of express is to understande the request response cycle and to use request response cycle. 
+  To start request response cycle express app receive a request when someone hits a server for which it will then create a request and response object. That data will then be used and processed in order to generate and send back a meaningful response. In order to process the data in express we use middleware, which can manipulate the request or the response object.
+  Everything in express are middleware. 
+  All the middleware together that we use in our app is called middleware stack. 
+  The order of middleware in the stack is actually defined by the order they are defined in the code. Middleware that appear first in the code is executed before one that appears later. So, order of code matter in express.
+
+13. Creating our own Middleware
+  We use use method to use middleware. In middleware function we have access to the request and the response also next function. route are the middle ware that applies to certain route only. Middleware function that we define in the first is applied to all the request only if it come before route function. 
+  Order matter a lot in express. 
+
+
