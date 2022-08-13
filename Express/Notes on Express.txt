@@ -1,0 +1,7 @@
+1. Setting up Express and Basic Routing
+  const express = require('express');
+  const app = express();
+  Here express is the function which on calling will add a bunch of methods to our app variable.
+  Routing: Routing means to determine how the application response to a certain client request to a certain URL. 
+  Express app and node app are all about request and response this is how the web work.
+  
