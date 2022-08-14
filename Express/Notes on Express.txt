@@ -55,6 +55,25 @@
 
 13. Creating our own Middleware
   We use use method to use middleware. In middleware function we have access to the request and the response also next function. route are the middle ware that applies to certain route only. Middleware function that we define in the first is applied to all the request only if it come before route function. 
-  Order matter a lot in express. 
+  Order matter a lot in express.
+
+14. Creating and Mounting Multiple Routers
+  We can create a new router with express.Router() function. We need to connect this new router with the application with the use of middleware. 
+
+15. Param Middleware
+  Param middleware is middleware that only runs for a certain parameters so basically when we have a certain parameter in our url. Each router is kind of a mini application, one of each resource.
+
+16. Serving static files
+  static file are the files that are siting in the file system.
+  If we want to excess something from our file system, we need to use the Express builtin middleware app.use(express.static("directory'))
+  For each piece that is the part of the website server actually gets a seperate request.
+
+17. Environment variable
+  Node.js || Express.js runs in the different environment the most important ones are the development environment and prodution environment. Different databases or login turned on or off that will be based on environment variable. Express set the environment to development. 
+  To see in which environment we are in:
+    app.get('env');
+  Environment variable are the global variable that are used to define the environment in which the node app is running. 
+    console.log(process.env);
+  
 
 
