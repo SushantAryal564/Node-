@@ -61,7 +61,7 @@
   We can create a new router with express.Router() function. We need to connect this new router with the application with the use of middleware. 
 
 15. Param Middleware
-  Param middleware is middleware that only runs for a certain parameters so basically when we have a certain parameter in our url. Each router is kind of a mini application, one of each resource.
+  Param middleware is middleware that only runs for a certain parameters so basically when we have a certain parameter in our url. Each router is kind of a mini application, one of each resource. we can have a specific parameter or param middleware in the routes also for a specific route. 
 
 16. Serving static files
   static file are the files that are siting in the file system.
@@ -74,6 +74,10 @@
     app.get('env');
   Environment variable are the global variable that are used to define the environment in which the node app is running. 
     console.log(process.env);
+  Variable of the .env are mostly in uppercase.
+
+18. Setting up ESlint+ prettier
+  npm i eslint prettier eslint-config-prettier eslint-plugin-prettier eslint-config-airbnb eslint-plugin-node eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react
   
 
 

@@ -1,0 +1,35 @@
+1. What is MONGODB?
+   It is a database a nosequal database other type of database is relational database.
+   In mongo each databasae can contain one or more collections. Each collection can contain one or more data structure called documents. In relational database a document would be a row in table. Each document contains the data about single entity one blogpost, one user or one review. Document have a data format that look a lot like JSON.
+   MongoDB is a document databse with the scalability and flexibility that you want with the quering and indexing that you need.
+   Key MongoDB features:
+   Document based: MongoDB stores data in document(field value pair data structure, NoSQL)
+   Scalable: Very easy to distribute data across multiple machines as your user and amount of data grows.
+   Flexible: No document data schema required, so each doucment can have different number and type of fields.
+   Performant: Embedded data models, indexing, sharding, flexible documents, native duplication etc.
+   free and open source, published under the SSPL License.
+   MongoDB uses a data format similar to JSON for data storage called BSON. BSON: Data format MongoDB uses for data storage. Like JSON, but typed meaning all value will have data type such as string, boolean, date and many more. Just like JSON BSON will have fields and data stored in value like in key value pairs. We could have multiple value for one field with the array in the BSON.
+   One of the important feature of MongoDB is the concept of embedded documents not present in traditional database.
+   embedding/Denormalizing: Including related data into a single document. This allows for quicker access and easier data models.
+   Maximum sizes for each document is currently 16MB, this might increase in the future.
+   Each document contains a unique ID, which acts as a primary key of that document.
+
+2. Creating a local database
+   we create a new database using the use and the name of teh database that we want to create. It is also used to switch to the already existing database. It we try to switch to the databse that already doesn't exists then it will create a new database.
+   Inside the database we have the collections and each collection has documents in it. Data that we create in the Mongo shell is always document.
+   db.tours.insertMany()
+   where db is the current database when we want to insert a document into it we need to specify the collection where that document will live. here tours is the collection. We can simply pass a javascript object into insertMany() then it will convert it into BSON.
+   we use insertOne() when we want to create one document. Whereas we use insertMany() when we want to create multiple document.
+   db.tours.find():
+   to see the document which was just created.
+   show dbs:
+   This shows all the database that we have in the mongodb.
+   show collections:
+   This show the collection that is inside the collection.
+
+3. CRUD updating Documents
+   To update first we need to select which document we want to update and
+   and second the data that should be updated.
+   If the query matched multiple document only the first one will be updated in the case of updateOne.Otherwise we should use updateMany()
+
+4. CRUD deleting Documents
