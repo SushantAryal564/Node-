@@ -1,3 +1,6 @@
+What is Node.js
+NOde.js is a javascript runtime built on google open source V8 engine. It can run outside of the browser. 
+
 1. Reading and Writing Files
   const fs = require('fs')
   readFileSync("Filename",'utf-8')
@@ -11,6 +14,8 @@
   The Asynchronous Nature of Node.js: 
   Node.js is single threaded so in each application there is only one thread. if all the user are accessing the same thread there will be a problem. so when Asynchronous code is used which instead of blocking it does the task in background and callback function is called when the task is completed. Node.js is build around callback function. Callbacks doesn't make asynchronous it work in some of the module in node.js only. 
   callback hell
+  Callback function in which the one function is called once the one before has finished its work is called callback hell.
+We can use promises and Async/ Await.
 
 3. Creating a simple Web server
   Node js is built around callback in order to implement an asynchronous behaviours. we need 'http' module to build http server. To create a server we need to create a server and start a server. http.createserver takes the callback function which is called every time when request is received. 
@@ -27,7 +32,7 @@
   Each different file will trigger a different request so we have to handle each assest request from the end user. 
 
 13. Parsing Variables from urls
-  With url.parse we get the object with different key and value amoung them pathname and query is the one which we need. 
+  With url.parse we get the object with different key and value amoung them pathname and query is the one which we need. We also need to pass true in the parse function in order to parse the query into a object. 
 
 14. Using Modules 2 our own Module
   We can create our own module and export something from them and import the function in another module and use the function. 
@@ -93,7 +98,7 @@ Introduction to Back end Web development
   Front end is about everthing about what happen in browser. Technology are html, css and javascript, React, Angular etc. Frontend stack 
 
   Backend is about eveything that happen in the web server. Server is the computer that is connect to the internet that stores the basic files like HTML, CSS and images and second runs the http server. Static and dynamic server. we can code for IFT devices with the help of node. 
-
+ 
 5. Static vs Dynamic vs API
 
   static website is when the developer uploads the final ready to serve file to webserver. this file are sent to the browser upon request. There is no work done in the server, there is no application running.
@@ -139,7 +144,7 @@ How Node.js works A look Behind the Scence
     2. I/O polling and execution of I/O callback 
     3. setImmediate callback: A special kind of timer that we can use if we want to process callback immediately after I/0 polling and execution phase.
     4. close Callback: All close event are processed.
-  
+  Event loop is what make asynchronous programming possible in node.js. We need event loop because everyting in node.js works on single thread. 
   Dont' Block event loop:
     Don't use sync version of function in fs, crypto and zlib modules in your callback function.
     Don't perform complex calculation in event loop.
@@ -199,6 +204,16 @@ How Node.js works A look Behind the Scence
   ES module system in used in browser. import/export
   What happen when we require() a module
   resolving and loading ==> wrapping ==> Execution ==>Returning exports ==> caching
+  resolving and loading:
+  we can load three different kinds of modules. Node core modules, core modules and third party modules. so it first try to load core modules. Then if the file start with ./ or ../ it will try to load developer modules. if not found it will look for index.js. Finally it will look in node_modules a third party modules. 
+  wrapping
+  Module code is wrapped into a special function. It will give us access to some of the special objects. Node.js take the code from module and put it inside the immediately invoked function expression. It also passes exports, require, module, __filename, __dirname  into it. 
+  require: fucntion to require modules
+  module: referenct to the current module
+  exports: a reference to module.exports, used to export object from module.
+  __filename: absolute path of the current module's file.
+  __dirname: directory name of the current module. 
+   
 
 11. How Requiring Modules really works
   require function returns exports of the required module.

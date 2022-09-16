@@ -1,0 +1,23 @@
+{
+  "name": "node",
+  "version": "1.0.0",
+  "description": "Learning node.js",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SushantAryal564/Node-.git"
+  },
+  "author": "Sushant Aryal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SushantAryal564/Node-/issues"
+  },
+  "homepage": "https://github.com/SushantAryal564/Node-#readme",
+  "dependencies": {
+    "slugify": "^1.6.5"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
