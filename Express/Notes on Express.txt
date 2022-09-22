@@ -23,19 +23,22 @@
     endpoint send different data to the client or also perform different action. 
     Endpoint should contain only resources, and use HTTP methods for actions and not the action that can be performed on them. 
   3. To perform different action on data like reading or creating or deleting data, API should use the right HTTP method.
-    put and patch are used to update the existing data.
+    put and patch are used to update the existing data. With put the client is supposed to send the entire updated object. With patch the client is supposed to send the only the part that has been changed. 
+
     CRUD => CREAD READ UPDATE DELETE
   4. Send data as JSON
     JSON is a very lightweight data interchange format which is heavily used by web API's. 
     For a get request before sending to the client we perform simple response formatting one of the standard for it is JSend.
     Enveloping: Wrapping a data into a additional object. 
   5. Must be stateless
-    Stateless RESTful API: All state is handled on the client. This means that each request contain all the information necessary to process a certain request. The server should not have to remeber previous request.
+    Stateless RESTful API: All state is handled on the client. This means that each request contain all the information necessary to process a certain request. The server should not have to remeber previous request. 
 6. Starting our API Handling GET Requests
     (req,res) callback funtion is also called route handler. 
     Before sendiing the data we need to read the data. 
 7. Handling POST Requests
   On post request we can send data from the client to the server which will be ideally available on the request. Out of the box express doesn't put the body data on the request in order to use the data we have to use middleware. express.json() is the middleware. Middleware is basically a function that can modify the incoming request data. It is called middleware as it stand in the middle of the request and the response.
+  Object.assign({},{}) ===> It helps to create a new object by combining two object. 
+  
 8. Responding to URL parameters
   :/id/:x? (? means vaye pani thik xa navaye pani thik xa)
 
@@ -62,6 +65,9 @@
 
 15. Param Middleware
   Param middleware is middleware that only runs for a certain parameters so basically when we have a certain parameter in our url. Each router is kind of a mini application, one of each resource. we can have a specific parameter or param middleware in the routes also for a specific route. 
+  Router is kin dof a minni sub application one for each resource. 
+  We should always work with the middleware stack with pipeline as much as we can so controller function doesn't have to worry about validation.
+  
 
 16. Serving static files
   static file are the files that are siting in the file system.

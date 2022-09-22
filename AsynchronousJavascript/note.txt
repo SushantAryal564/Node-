@@ -1,0 +1,7 @@
+1. consuming Promises with ASyncAwait
+  await basically stop the code from running until the promise is resolved. If the promise is fullfilled then the value of await expression is the resolved value of the promise which could be assigned to the data variable. It make code easier to read and look more like synchronous code while being in fact still asynchronous behind the scence. 
+  We can only use await if only it is inside an async function. 
+
+2. Returning Values from Async function
+  Async function returns a promise automatically.
+  
