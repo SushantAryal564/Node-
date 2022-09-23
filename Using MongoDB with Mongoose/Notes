@@ -1,0 +1,17 @@
+3. What is Mongoose?
+   Mongoose is an object Data Modeling library for mongodb and node.js a higher level of abstraction. Express is an layer of abstraction over node.js whereas mongoose is an layer of abstraction over mongodb.
+   object Data Modeling library is a way for us to write javascript code that will then interact with database.
+   Mongooose give us lot more functionality out of the box allow for rapid and simple develoddpment of mongoDB databse interactions.
+   Features: Schemas to model data and relationship, easy data validation, simple query API, middleware etc.
+   Mongoose schema: Where we model our data, by describing the structure of the data, default values and validation.
+   Mongoose Model: a wrapper for the schema, providing an interface to the database for CRUD operations.
+
+4. Creating a simple Tour Model
+   MOngoose is all about model which is like a blueprint we use to create documents. It is like a classes in the javascript from which we create object out of them.
+   We create a model in mongoose in order to create document using it, and also to query update and delete these documents. To perform each of the CRUD operation we need a MONGOOSE model. We create a model from the mongoose schema.
+   creating a new Schema in mongoose:
+   const tourSchema = new mongoose.Schema({
+   name:String,
+   rating:Number,
+   price:Number,
+   })
