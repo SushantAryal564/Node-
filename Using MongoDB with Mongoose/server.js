@@ -7,7 +7,7 @@ mongoose.connect(process.env.DATABASE_LOCAL).then(() => {
 });
 
 console.log(process.env.DATABASE_LOCAL);
-const port = process.env.port || 3000;
+const port = 3000;
 app.listen(port, () => {
   console.log(`You are currently listening to port ${port}`);
 });
