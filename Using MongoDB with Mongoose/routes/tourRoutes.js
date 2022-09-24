@@ -5,6 +5,7 @@ const tourController = require("./../Controller/tourController");
 // Check if body contain the name and price property
 // If not, send back 400 (bad request)
 // Add it to  the post handler stack.
+router.route("/tour-stats").get(tourController.getTourStats);
 router
   .route("/top-5-cheap")
   .get(tourController.aliasTopTours, tourController.getAllTours);
