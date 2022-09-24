@@ -15,3 +15,57 @@
    rating:Number,
    price:Number,
    })
+
+5. Intro to Back end architecture MVC, Types of Logic and More
+   MVC(Model View Controller) where:
+   Model: Business Logic (Concerned with application data and bussiness logic)
+   Controller: Application Logic (The function of controller is to handle the application request interact with model and send back response to client.)
+   View: Presentation Logic (If we have graphical interface in app.)
+   using this architecture allow us to write modular appliation which is more easier to model or scale.
+   One of the major role of MVC is to seperate Application logic and Business Logic.
+   Application Logic:
+   Code that is only concerned about the application's implementation not the underlying business problem.
+   concerned about managing request and response.
+   About the app's more technical aspects.
+   Bridge between model and view layers.
+
+   Business Logic
+   Code that actually solves the business problem we set out to solve.
+   Directly related to business rules, how the business works and business needs.
+   Examples:
+   creating new tours in database.
+   Checking if user's password is correct.
+   Validating user input data.
+   Ensuring only user who bought a tour can review it.
+
+   We must be sure that our application logic is in Controller where as our business logic in the model.
+   Fat model/ thin controller: Offload as much logic as possible into the models, adn keep the controllers as simple and lean as possible.
+
+6. Another Way of Creating Documents
+   exports.createTour = async(req,res)=>{
+    <!-- const newTour = new tour({});
+    newTour.save(); -->
+
+   We can use Tour model directly as well and call the create method on it into that function we pass the data that we want to store in the databse as a new tour.
+   If the field are not in the schema they aren't put in the database. Everthing that are not in schema aren't put in the database.
+
+7. Reading Documents
+
+8. Updating Documents
+   Model.prototype.save() which means an object created from the class. save method is called on the document.
+
+9. Modelling the Tours
+   summery:{
+   type: String,
+   trim: true,
+   }
+   trim removes the white space at beginning and the end of the document.
+
+10. Making the API Better Filtering
+    In mongoose we have two way to write a database query.
+    The first one is to use filter object.
+    the second way is special mongoose method.
+    We could have other functionality like sort for sorting functionality, page for pagination so we need to make sure we aren't querying for these in our database cause we want to use it only to implement pagination not to query in database so we need to exclude this special query string before we can do filtering.
+    const query = Tour.find(queryObj);
+    Here find method return an query.But as soon as we await the query will then execute and come back with an document that match our query. so we cannto implement sorting and pagination and other feature. so we need to save it as a query.
+    const tours = await query;
