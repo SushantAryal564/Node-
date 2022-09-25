@@ -94,3 +94,6 @@
     Aggregration pipeline is an feature of an mongoDb but we mongoosh also give the access to it so we can use it in the Mongoose driver.
     Match: It is basically to select or to filter certain document. It is very similar to filter object in mongoDb. Match stage is just a priliminary stage to then prepare for the next stage to come.
     group: It allows us to group documents together, basically using accumulators.
+
+17. Virtual Properties
+   Virtual properties are basically the field that we can define on our schema that will not be persisted. It will not be saved into the database in order to save us some space. It can be very useful for field that can be derived from one another. In virtual properties we need to define the get method as it is created each time that we get some data out of the database. 
