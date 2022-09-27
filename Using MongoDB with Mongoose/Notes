@@ -95,5 +95,47 @@
     Match: It is basically to select or to filter certain document. It is very similar to filter object in mongoDb. Match stage is just a priliminary stage to then prepare for the next stage to come.
     group: It allows us to group documents together, basically using accumulators.
 
-17. Virtual Properties
-   Virtual properties are basically the field that we can define on our schema that will not be persisted. It will not be saved into the database in order to save us some space. It can be very useful for field that can be derived from one another. In virtual properties we need to define the get method as it is created each time that we get some data out of the database. 
+17. Aggregration Pipeline Unwinding and Projecting
+    We solve real business problem.
+    unwindling: Unwind basically deconstruct an array field from input document and then output one document for each element of the array.
+    Mongo is perfect for working with date like doing date comparision.
+18. Virtual Properties
+    Virtual properties are basically the field that we can define on our schema that will not be persisted. It will not be saved into the database in order to save us some space. It can be very useful for field that can be derived from one another. In virtual properties we need to define the get method as it is created each time that we get some data out of the database.
+
+19. Document middleware
+    Mongoose also have a concept of middleware. We can use mongoosh middleware to make something happen between two event for example each time a document is saved to the database we can run a function between save command is issued and the actual saving of the doucment or after the actual saving. Mongoosh middleware is also called pre and post hook as we cand define a function to run before and after a certain event like saving a document. It is a fundamental concept in mongoosh. There are four type of middleware in mongoosh:
+    1. Document 
+    2. Query
+    3. aggregrated
+    4. Model
+
+    Document Middleware which is the middleware which can act on the currently processed document. Just like Express we have next function in mongoosh middleware to call next middleware in the stack.
+    Each middleware function in a pre save middleware has access to next. 
+    Document MIddleware runs before .save() and .create()
+    .post has access to next and document that has been just saved. It is executed after .pre middleware are completed. 
+    .pre has access to next.
+    We can have multiple pre and post middleware for the same hook.
+    We can have middleware running before and after certain event in case of document middleware that is save event. In the case of document middleware this keyword means currently saving document. 
+    It can also run for save, remove, validate. 
+
+20. Query Middleware
+    Query Middleware allows us to execute the function before and after a certain query is executed. 
+    pre-find hook: a middleaware that is gonna run before any find query is executed. 
+    "find" this make the middlewarer a query middleware not a document middleware. this keyword now will point at the current query.
+    In case of query middleware before the query is executed the pre find middleware is executed. In case of Query Middleware the this middleware points to query so in which we can again chain another find method and filter out certain things. 
+    This will work for the command with the find but not with the findbyId.so we also need to specify the middleware for findOne.
+    It can run for count deletemany, deleteone, find, findone, findMany etc. 
+    .post => In post find middleware we get access to all documents that we returned from the query. This middleware is executed after the query is executed so it can have access to the document query has returned. 
+
+21. Aggregration Middleware
+     It allows us to use apply hook before and after the aggregration happen. 
+     this points to the current aggregation object. 
+
+22. Data Validation Built-in Validation
+    Validation is basically checking the input value are in right format in our document schema, and also that values have been entered for all of the required fields. Sanitization which is to ensure that the inputted data is clean, so there is no malicious code being injected to our database or into the application itself. It is a crucial step never ever accept the input data as it is so we need to sanitize the data coming in. Fat model and thin controller so data validation is done in the model. Mongoosh already come with various validation tools out of the box. Here required: is a kind of data validator in schema type option. 
+
+23. Data validation Custom validators
+    Sometimes builtin validators are not enough in such case we can create our own custom validators. Validator is a simple function that should return true or false. 
+    In validator function this only works the document which going to be posted but not on the upgrade. 
+    There are various third party package for the validation on of them is validator which is very popular a string validator and sanitizer.
+    
