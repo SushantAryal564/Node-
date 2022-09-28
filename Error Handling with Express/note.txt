@@ -1,0 +1,27 @@
+1. Debugging Node.js with ndb
+  There will be always some bug in our code so there is a tool for handling error in our code.There are different tool for debugging our code one of the most popular debugging tool is ndb a npm package.
+  The fundamental aspect of debugging is to set break points which are basically points in our code that we can define in the debugger where our code will then stop running then we look in our variable. 
+
+2. Handling Unhandled Routes
+  undefined Routes: Routes for which we have not assigned any handler. Express automatically sends html along with 404 not found in case there is no handler for the route that was requested or miss spelled route. 
+
+3. An overview of Error Handling
+  There are two type that can occur in node.js:
+  a.Operational Errors:
+    -Problems that we can predict will happen at   some points, so we just need to handle them in advance. They have nothing to do with the bugs in the code thet depend on the user or system.
+    -example: invalid path accessed, invalid user input, Failed to connect to server, Failed to connect to database, request timeout.
+  b. Programming Errors
+    Bugs that we developers introduce into our code. Difficult to find and handle.
+    -exaple: Reading properties on undefined, passing a number where an object is expected, using await without async, using req.query instead of req.body.
+  When we meant error handling in express we mean operational error as these are one easy to catch and handle the error. We can write a global expresse error handling middleware which can catch error coming from all over the application no matter where the error is coming from .  
+  Handling means sending the response to the user leting them know what happen. 
+  Having the gload error handler middleware is it allows for a nice seperation of concern. 
+4. Implementing a Global Error Handling middleware
+   To define error handling middleware all we need to do is to give the middleware function four argument and Express will automatically recognize as a error handling middleware. 
+   if the next function receive an argument no matter what it is express will automatically know that there was an error that applies to every next function in every single middleware anywhere in our application. so it will skip all the other middleware in the middlware stack and sent the error to our global error handling middleware. 
+
+6. Better Error and Refactoring
+
+7. Catching Errors in Async Functions
+   
+
