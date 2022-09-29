@@ -1,0 +1,56 @@
+2. Modelling Users
+   Authentication, Authorization is all about user loggin in, and accessing pages or routes, that we grant them permission to do.
+
+3. Creating new Users
+   Most of the user stuff like creating new User, logging user in authentication in authentication controller. 
+   The user resource is differnt from other resourcse as it require authentication.
+   REST Architecture rule The name of the URL has nothing to do with the action that is performed. 
+
+4. Managing Password
+   When we are working with authentication one of the fundamental principle is to never store a plain password in a database. 
+   We can use Mongoosh middleware for the encryption pre save middleware. We want to encrypt the password if the password field has been updated.  
+   Bcrypt: Encryption and hashing algorithm
+   This algorithm will first salt then hash our password in order to make it really strong to protect it against bruthforce attack. 
+   salt our password: This means that the random string is add to the password so that two equal password do not generate the same hash. 
+   this.password = bcrypt.hash(this.password,12);
+   where 12 is an coast parameter HIgher the coast the more CPU intensive the process will be and better the password will be encrypted. 
+
+5. How Authentication with JWT Works
+   There are many authentication method available in the open world one of the most popular one is :
+   JWT (Json web Tokens): It is a stateless solution for authentication. So there is no need to store any session state on the server which is perfect for the restful api as restful api should always be stateless. Another widely use authentication mehtod to JWT is user log in state on the server using sessions. It doesn't follow the principle of RESTful api of stateless so we are opting it with JWT. 
+   How JSON web token (JET) Authentication Works
+   so the user client makes a post request with name and password the application check if the user exists and password is correct and this so unique Json webtoken for only that user is created using the secret string that is stored in server. JWT is just a string. The server send that JET back to the client whichwill sotre it either in cookie or in local storage just like this user is authenticated and basically logged into our application without leaving any state on the server. so the server doesn't know in fact which user are logged in but user know it as he/she has JWT token. 
+   All this must happen in https to prevent anyone get access to jwt. 
+   
+   What JWT looks like?
+   It is made up of three part:
+   header: metadata about the JWT itself.
+   payload: data that we can encode into the token.
+   verify signature: It is created using the header, payload and the secret that is saved on the server. which is called signing of JWT.
+
+   Signing and veryfing Works
+   signing algorithm takes the header payload and secret to create a signature. together with the header,payload and signature JWT is formed which get sent to the client.
+   verifying: Once the JWT is received the verification will take the header and payload and together with the secret that is still saved on the server create a test signature. Then the test signature is compared with the original signature. 
+   test signature === signature Data not been modified authenticated
+   test signature !== signature data has been modified not authenticated
+
+6. Signing up Users
+   One of the most popular library for the authentication and authorization is passport. 
+   Usually as we sign up for any website we get automatically logged in.
+
+7. Logging in Users
+    The concept of logging in users basically means to sing a JSON web token and send it back to the client. But in the case of Loggin in user we only issue the token in case user exists and password is correct. 
+    We use bcrypt to generate the hased password so we can also basically compare an original password with hashed password by encrypting it and coparing with the encrypted one. 
+    Instance Method: It is basically a method that is gonna be availabe on all documents of a certain collection. 
+
+8. Protecting Tour routes
+    we can protect certain routes so before running that certain handlers we need to have certain check in place to verify the user is logged in or not. so we perform it with middleware function. so the middleware will return an error if we aren't logged in if logged in return the response. 
+    Implementation of the protect middleware
+    - 1) Getting token and check of it's there
+      To send a JSON web token as a header there is a standard where key is authorization and value of header should start with bearer.
+    - 2) Verification token
+    - 3) Check if user still exists
+    - 4) Check if user changed password after the token was issused
+
+
+
