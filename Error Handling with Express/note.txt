@@ -23,5 +23,26 @@
 6. Better Error and Refactoring
 
 7. Catching Errors in Async Functions
-   
+   const catchAsync = fn =>{
+    return (req,res,next)=>{
+      fn(req,res,next).catch(err=>next(err));
+    }
+   }
+   In order to get rid of try catch block asynchronous function is wrapped inside a catchAsyn function this function will then return a new anonymous function which will be assigned to calling variable. 
 
+8. Adding 404 Not Found Error
+   
+9. Errors During Development vs Production 
+   Here different err message is sent to the client depending on the development environment. For production environment we send as much less detailed error as possible. While in the development environment we send as much detailed error as possible. We manily handle operational error if it isn't generic message is sent. 
+
+10. Handling Invalid Database IDs
+   There are three type of error which could be marked as operational error so we can send back meaningful error message to the client.
+   1. Invalid IDs
+   2. Dublicate Value
+   3. Validation Error
+
+12. Handling Mongoose Validation Errors
+   set NODE_ENV=production&&nodemon server.js
+
+13. Errors Outside Express Unhandled Rejection
+   There can be an error outside of an express also for example mongodb database connection. 
