@@ -63,7 +63,16 @@
 13. Sending Emails with NodeMailer
    We need to follow three step in order to send mail with nodemailer:
    1) Create a transporter : It is basically a service that will actually send the mail because it isn't nodejs that will send the email. eg: Gmail
-   
+
    2) Define the email options
    3) Actually send the Emails
 
+14. Password Reset Functionality setting new Password
+   Sometime saving to the database is a bit slower than issuing the json webtoken making it so that the changed password timestamp is sometime after the json web token has been created. And that will then make it so that the user will not be able to log in using the new token. The whole rease that the timestamp exists is so that we can compare it with the timestamp on the JSON Web Token. 
+
+15. Updating the Current User Password
+   The password login functionality is only for logged in user. We always need to ask current password before updating a password.
+   WE cannot use findByIdAndUpdate because of two reasons:
+   1. validation of the password isn't going to work because this.password isn't going to work.
+   2. pre save middleware aren't going to work.
+   
