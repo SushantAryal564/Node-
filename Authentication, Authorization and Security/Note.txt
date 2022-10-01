@@ -8,7 +8,7 @@
 
 4. Managing Password
    When we are working with authentication one of the fundamental principle is to never store a plain password in a database. 
-   We can use Mongoosh middleware for the encryption pre save middleware. We want to encrypt the password if the password field has been updated.  
+   We can use Mongoosh middleware for the encryption pre save middleware. We want to encrypt the password if the password field has been updated only.
    Bcrypt: Encryption and hashing algorithm
    This algorithm will first salt then hash our password in order to make it really strong to protect it against bruthforce attack. 
    salt our password: This means that the random string is add to the password so that two equal password do not generate the same hash. 
@@ -26,11 +26,12 @@
    It is made up of three part:
    header: metadata about the JWT itself.
    payload: data that we can encode into the token.
+   This two data are plain text which anyone can decode.
    verify signature: It is created using the header, payload and the secret that is saved on the server. which is called signing of JWT.
 
    Signing and veryfing Works
    signing algorithm takes the header payload and secret to create a signature. together with the header,payload and signature JWT is formed which get sent to the client.
-   verifying: Once the JWT is received the verification will take the header and payload and together with the secret that is still saved on the server create a test signature. Then the test signature is compared with the original signature. 
+   verifying: Once the JWT is received to get access to the protected route it need to verify it if the user is really who he claim to be.  so once the JWT is received the verification will take the header and payload and together with the secret that is still saved on the server create a test signature. Then the test signature is compared with the original signature. 
    test signature === signature Data not been modified authenticated
    test signature !== signature data has been modified not authenticated
 
@@ -39,7 +40,7 @@
    Usually as we sign up for any website we get automatically logged in.
 
 7. Logging in Users
-    The concept of logging in users basically means to sing a JSON web token and send it back to the client. But in the case of Loggin in user we only issue the token in case user exists and password is correct. 
+    The concept of logging in users basically means to sign a JSON web token and send it back to the client. But in the case of Loggin in user we only issue the token in case user exists and password is correct. 
     We use bcrypt to generate the hased password so we can also basically compare an original password with hashed password by encrypting it and coparing with the encrypted one. 
     Instance Method: It is basically a method that is gonna be availabe on all documents of a certain collection. 
 
@@ -52,5 +53,17 @@
     - 3) Check if user still exists
     - 4) Check if user changed password after the token was issused
 
+9. Protecting Tour Routes
+   
+11. Authorization User Roles and permission
+   We need to authorize only certain type of user to perform certain actions. Authorization is the process of verifying if a certain user has the rights to interact with certain resource even if he is logged in. 
 
+12. Password Reset Functionality
+   
+13. Sending Emails with NodeMailer
+   We need to follow three step in order to send mail with nodemailer:
+   1) Create a transporter : It is basically a service that will actually send the mail because it isn't nodejs that will send the email. eg: Gmail
+   
+   2) Define the email options
+   3) Actually send the Emails
 

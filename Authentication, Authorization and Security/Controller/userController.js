@@ -1,4 +1,4 @@
-const User = require(`${__dirname}/../models/tourModel`);
+const User = require(`${__dirname}/../models/userModel`);
 const catchAsync = require("./../utils/catchAsync");
 
 exports.getAllUser = catchAsync(async (req, res) => {
