@@ -76,3 +76,54 @@
    1. validation of the password isn't going to work because this.password isn't going to work.
    2. pre save middleware aren't going to work.
    
+16. Updating the current user data
+    
+17. Deleting the current User
+   When the user decide to delete his account we actually do not delete that document from the database but set the account to in active so the user can can reactivated in the future. 
+18. Security Best Practise
+   Security Best Practise and suggestion
+   Compromised database
+   - Strongly encrypt passwords with salt and hash (bcrypt)
+   - Strongly encrypt password with tokens. (SHA 256)
+
+   Brutal Force Attacks
+   - Use brycpt (to make login request slow)
+   - Implement rate limiting (express-rate-limit)
+   - Implement maximum login attempt
+
+   Cross site scripting Attacks
+   - Store JWT in HTTP only cookies not in local storage
+   - Sanitize user input data
+   - Set speical HTTP header (helmet package)
+
+   Denial of Services Attacks
+   - Implement rate limiting (express-rate-limit)
+   - Limit body payload( in body-parser)
+   - Avoid evil regular expression
+
+   NOSQL Query Injection
+   Query Injection happens when an attacker instead of inputing valid data, injects some query in order to create query expression that are gonna translate to true. For example to be logged in even without providing valid login password and email.
+   - Use mongoose for MongoDB 
+   - Sanitize user input data
+
+   Other Best Practise and suggestion
+   - Always use https
+   - Create random password reset tokens with expiry date
+   - Deny access to JWT after password changed
+   - Don't commit sensitive config data to Git
+   - Don't send error details to client
+   - Prevent Cross-Site Request Forgery (csurf package)
+   - Require re-authentication before a high value actions
+   - Implement blacklist of untrusted JWT
+   - Confirm user email address after first creating account
+   - Keep user logged in with refresh token
+   - Implement two factor authentication
+   - Prevent parameter pollution causing Uncaught Exception
+   
+19. Sending JWT via cookie
+   JWT should be stored in the secure HTTP only cookie so that browser can store it in more secure way. 
+   Cookie is basically a small piece of text that a server can send to client. When the client receive the cookie it will automatically store it and then automatically send it back along with all future request to the same server. 
+
+20. Implementing Rate limiting
+   Rate Limiter count the number of request coming from one IP and then when there are too many request block this request.
+   
