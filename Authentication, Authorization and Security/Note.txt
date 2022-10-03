@@ -126,4 +126,22 @@
 
 20. Implementing Rate limiting
    Rate Limiter count the number of request coming from one IP and then when there are too many request block this request.
+   Package: express-rate-limit
+
+21. Setting Security HTTP Headers
+   Package: helmet
+   In app.use we always need a function not a function call. With helmet package we are calling the function which will return the function.
+   Put it in the beginning. 
+
+22. Data Sanitization
+   Data sanitization basically means to clean all the data that comes into the application from malicious code. 
+   {"email":{"$gt":""}} allows us to login by knowing password only. 
+   Package:
+   1.express-mongo-sanitize : This package look at the request body, the request query string, and also request.params and it filter out all of the dollar signs and dots. As MongoDB operator are written in this way so by removing that these operator are then no longer gonna work. 
+   2. xss-clean: Clean any user input from malicious html code. Attack can attach some malicious HTML code with some Javascript code attached to it so if that is injected intou our html site. It could damage our application. 
+   Mongoose validation is itself a very good protection against xss as it doesn't allow the crazy stuff to go into our database as long as we use it correclty.
+
+23. Preventing Parameter pollution
+   package: 
+   1. hpp (http parameter pollution)
    
