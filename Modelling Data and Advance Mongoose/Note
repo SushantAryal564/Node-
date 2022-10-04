@@ -111,4 +111,11 @@ Summery:
    Behind the scence using populate will actually create a new query, so this might affect our performance. Hugh effect in large application.
 
 8. Modelling Reviews Parent Referencing
-   f
+
+9. Virtual Populate Tours and Reviews
+   In the case of parent referencing we aren't able to access the child document from the parent document as parent doesn't really know about its children. solutions for this problems are:
+   -Child referenicng an array of child document id in the parent document.
+   -(Recommended ) Virtual populated: With virtual populate we can populate the parent with child document without keeping the array's of ID's on the parent document without persisting in to the databse.
+
+10. Implementing Simple Nested Routes
+    Nested Routes:

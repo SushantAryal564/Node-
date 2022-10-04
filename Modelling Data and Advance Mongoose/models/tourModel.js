@@ -119,6 +119,18 @@ tourSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
+
+// Virtual
+tourSchema.virtual("durationWeeks").get(function () {
+  return this.duration / 7;
+});
+
+// Virtual Populate
+tourSchema.virtual("reviews", {
+  ref: "Review",
+  foreignField: "tour",
+  localField: "_id",
+});
 // Document Middleware: runs before .save() and .create() not in .insertMany()
 tourSchema.pre("save", function (next) {
   // console.log(this); // this keyword points to the currently processed document that's why it is called document middleware as in this function we have acccess to the function being processed.
@@ -133,9 +145,7 @@ tourSchema.pre("save", function (next) {
 //   console.log(doc);
 //   next();
 // });
-tourSchema.virtual("durationWeeks").get(function () {
-  return this.duration / 7;
-});
+
 // Query Middleware
 tourSchema.pre(/^find/, function (next) {
   // All the string that starts with find.
@@ -172,5 +182,5 @@ tourSchema.pre("aggregate", function (next) {
   next();
 });
 
-Tour = mongoose.model("Tour", tourSchema);
+const Tour = mongoose.model("Tour", tourSchema);
 module.exports = Tour;

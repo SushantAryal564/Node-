@@ -1,36 +1,55 @@
-import Tour from "./tourModel";
 /// Review/ rating/ createdAt/ ref to the tour / ref to user
 const mongoose = require("mongoose");
-reviewSchema = new mongoose.Schema({
-  review: {
-    type: String,
+const reviewSchema = new mongoose.Schema(
+  {
+    review: {
+      type: String,
+      required: [true, "Review cannot be empty"],
+    },
+    rating: {
+      type: Number,
+      min: 1,
+      max: 5,
+    },
+    cratedAt: {
+      type: Date,
+      default: Date.now(),
+    },
+    tour: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "Tour",
+        required: [true, "Review must belong to a tour."],
+      },
+    ],
+    user: [
+      {
+        type: mongoose.Schema.ObjectId,
+        ref: "User",
+        required: [true, "Review must belong to a user."],
+      },
+    ],
   },
-  rating: Number,
-  cratedAt: Date,
-  tours: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "tours",
-    },
-  ],
-  users: [
-    {
-      type: mongoose.Schema.ObjectId,
-      ref: "users",
-    },
-  ],
-});
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
+);
 
 reviewSchema.pre(/^find/, function (next) {
+  // this.populate({
+  //   path: "user",
+  //   select: "name photo",
+  // });
+  // this.populate({
+  //   path: "tour",
+  //   select: "name",
+  // });
   this.populate({
-    path: "tours",
-    select: "Tour",
+    path: "user",
+    select: "name photo",
   });
-  this.populate({
-    path: "users",
-    select: "User",
-  });
+  next();
 });
-
-Review = mongoose.model("Review", reviewSchema);
+const Review = mongoose.model("Review", reviewSchema);
 module.exports = Review;
