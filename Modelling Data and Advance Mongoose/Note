@@ -118,4 +118,44 @@ Summery:
    -(Recommended ) Virtual populated: With virtual populate we can populate the parent with child document without keeping the array's of ID's on the parent document without persisting in to the databse.
 
 10. Implementing Simple Nested Routes
-    Nested Routes:
+    Nested Routes: Is to access the child resources from the parent resources.
+11.
+12.
+13. Nested Routes with Express
+    Merge params
+14. Building Handler Factory Functions Delete
+    Adding very similar handler to all of our controllers will create a lots of duplicated code. If we wanted to change some http status code or status message then we have to go into each and every controller and change the handler in there so we can create a factory function instead of writing the code manually. Factory function is a function that returns another function.
+    Closure: Inner function will get access to the variable of the outer function even after the outer has already returned.
+15.
+16.
+17.
+18. Adding a me endpoint
+19.
+20.
+21. Improving Read performance with indexes
+    While querying for data in an document it will be relatively faster for document with less but as the data increases so the processing time. So indexing could solve this problem. MongoDB automatically creates an index on the ID field by default. Here ID index is an ordered list of all the ids that get stored somewhere outside of the collection. This index is very useful because whenever the document is queried by ID MongoDB will search that ordered index instead of searching from whole collection and looking at all the documents one by one.
+    We can set our own indexes on fields that we query very often.
+    With index we don't have to scan through all of the documents which is a hugh performance gain.
+    Mongoose behind the scence in order to ensure the uniquness of the field create a unique index.
+    simple index: One with one field.
+    compound index: One with two or more fields. When we create a compound index we don't need to create one individual for each of the fields.
+    Indexes that we create to search the documents take up a lots more space then the document themself.
+    How do we decide which field we actually need to index?
+    We need to carfully study the access pattern of the application in order to figure out which field are quired the most and set the indexes for these fields. We don't want to index for each field blindly as each index actually uses resources and each index needs to be updated each times the underlying collection is updated. If we have a collection with high read write then it would make absolutely no sense to create an index on any field in this collections because the cost of updating the indexes and keeping it in the memory outweight the benefits of having index. We should always balance the frequency of queries using that exact field with the cost of maintaining the index and also the read write pattern of the resources.
+
+22. Calculating Average Rating on Tours
+    Storing the summary of the related data set on the main dataset is actually a very popular technique in mongoose.
+    Static Method: It is one of the feature of the Mongoose.
+    Instance Mehthod: These are the method that we can call on the documents.
+    Post Middleware doesn't get access to next so we cannot use it.
+
+23. Calculating Average Rating on Tours
+    A bit complex need revision and throughly learning in this topic. Error in code also don't know how to debug it.
+
+24. Geospatial Queries Finding Tours within Radius
+    Radius should always be in radian which is obtain by dividing the distance by the radius of the earth.
+    In order to do basic geospatial queries we need to first attribute an index to the field where the geosptaial data that we are searching is stored.
+    tourSchema.index({startLocation: }) For geospatial data this index needs to be a 2D sphere index if the data describe real points on Earth like sphere.
+
+25. Geospatial Aggregation Calculting Distance
+    For geospatial aggregation we have only one single stage called geonear. It always need to be the first stage. It requires that at least one of our fields contains a geospatial index. If we have a multiple field with the geospatial indexes then we need to use the keys parameter in order to define the field that we want to use for calculation.
