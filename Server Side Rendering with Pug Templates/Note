@@ -1,0 +1,29 @@
+2. Recap Server-side vs Client side Rendering
+   Server side rendering is to build the website on the server.
+3. Setting up PUG in express
+   Template engine: It allows us to create a template and then easily fill up the template with our data. example: pug, handlebar,ejs.
+   Express support the most common engines out of the box, pug is one of them so we don't need to install the pug and require it. It happens all behind the scence internally in Express.
+   pug templates are called views in Express.
+
+4. First step with Pug
+   Pug is the simple whitespace sensative syntax for writing html. all we use to write html elements is their name and indentation in our code.
+   All we need is indentation and the name of the html elements and the content itself.
+   All the static files are served from the public file which is defined using express.static.
+   The variable that are passed in the render are called locals in the pug file.
+   h1=tour This kind of code in the pug is called buffer code.
+
+   - const x = 9; =This kind of code in pug is called unbuffer code.
+     #{} this is like template string of javascript and is called hash.
+
+5. Creating our base templates
+6. Including files into pug templates
+7. Extending Our base templates with blocks
+   With extends we want to use our base layout for every single page that we want to render.
+   include establish the parent child relationship where parent template include one or more child template.
+   While extending the component in the block are overridden or written.j
+8.
+9.
+10.
+11. Building the Tour Page
+    Mixins are basically reusable pieces of code that we can pass argument into a bit like a function.
+    conditional in pug
