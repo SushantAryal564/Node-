@@ -3,6 +3,7 @@ const rateLimit = require("express-rate-limit");
 const helmet = require("helmet");
 const morgan = require("morgan");
 const hpp = require("hpp");
+const cookieParser = require("cookie-parser");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const appError = require("./utils/appError");
@@ -10,7 +11,6 @@ const globalErrorHandler = require("./Controller/errorController");
 const tourRouter = require("./routes/tourRoutes");
 const userRouter = require("./routes/userRoutes");
 const reviewRouter = require("./routes/reviewRoutes");
-const AppError = require("./utils/appError");
 const viewRouter = require("./routes/viewRoutes");
 const path = require("path");
 const app = express();
@@ -54,7 +54,7 @@ app.use(
     limit: "10kb",
   })
 );
-
+app.use(cookieParser());
 // Data sanitization against NoSQL query injection
 app.use(mongoSanitize());
 
@@ -82,6 +82,7 @@ app.use(xss());
 // Test Middleware
 app.use((req, res, next) => {
   req.requestTime = new Date().toISOString();
+  console.log(req.cookies);
   next();
 });
 

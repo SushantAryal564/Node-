@@ -27,3 +27,9 @@
 11. Building the Tour Page
     Mixins are basically reusable pieces of code that we can pass argument into a bit like a function.
     conditional in pug
+12.
+13.
+14.
+15.
+16. Logging in User with Our API
+    Http request is called atex call.
